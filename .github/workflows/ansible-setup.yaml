@@ -13,8 +13,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Clone server-setup-webui repository
+        env:
+         GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          git clone https://github.com/satellytes/server-setup-webui.git
+          git clone https://$GH_TOKEN@github.com/satellytes/server-setup-webui.git
 
       - name: Set up Python
         uses: actions/setup-python@v5
