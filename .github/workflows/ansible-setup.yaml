@@ -1,8 +1,9 @@
 name: Ansible Server Setup
 
 on:
+  workflow_dispatch:
   workflow_run:
-    workflows: ["docker-build"]
+    workflows: ["Create and publish Docker images with specific build args"]
     types:
       - completed
 
