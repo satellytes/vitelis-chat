@@ -35,8 +35,11 @@ jobs:
 
       - name: Generate Ansible inventory
         run: |
-          echo "[web]" > inventory.ini
-          echo "${{ secrets.SERVER_IP }} ansible_user=root" >> inventory.ini
+          echo "[web]" > server-setup-webui/inventory.ini
+          echo "${{ secrets.SERVER_IP }} ansible_user=root" >> server-setup-webui/inventory.ini
+
+      - name: DEBUG Show inventory
+        run: cat server-setup-webui/inventory.ini
 
       - name: Generate Ansible group_vars/all.yml
         run: |
@@ -48,4 +51,4 @@ jobs:
       - name: Run Ansible Playbook
         working-directory: ./server-setup-webui
         run: |
-          ansible-playbook -i ../../inventory.ini site.yml
+          ansible-playbook -i inventory.ini site.yml
